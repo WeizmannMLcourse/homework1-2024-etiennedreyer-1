@@ -19,8 +19,8 @@ jobs:
       with:
         timeout: 10
         max-score: 1
-        setup-command: sudo -H pip3 install -r requirements.txt  ; curl -L --output
-          galaxy_test.h5 "https://www.dropbox.com/scl/fi/5fh5xlqu4nhtwgq9kvqtv/galaxy_test.h5?rlkey=sjdwic2lls7m6xuvtljycfzx6&dl=1"
+        setup-command: pip3 install -r requirements.txt  ; wget -O galaxy_test.h5
+          "https://www.dropbox.com/scl/fi/5fh5xlqu4nhtwgq9kvqtv/galaxy_test.h5?rlkey=sjdwic2lls7m6xuvtljycfzx6&dl=1"
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
