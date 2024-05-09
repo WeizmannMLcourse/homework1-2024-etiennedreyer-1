@@ -19,7 +19,7 @@ jobs:
       with:
         timeout: 10
         max-score: 1
-        setup-command: 'apt-get update ; apt-get install wget ; wget -O galaxy_test.h5
+        setup-command: 'apt-get update ; apt-get -y install wget ; wget -O galaxy_test.h5
           "https://www.dropbox.com/scl/fi/5fh5xlqu4nhtwgq9kvqtv/galaxy_test.h5?rlkey=sjdwic2lls7m6xuvtljycfzx6&dl=1"
           ;  pip3 install -r requirements.txt '
     - name: Autograding Reporter
