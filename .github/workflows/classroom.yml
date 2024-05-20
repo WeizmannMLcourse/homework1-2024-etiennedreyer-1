@@ -13,17 +13,19 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-    - name: test
-      id: test
-      uses: classroom-resources/autograding-python-grader@v1
+    - name: performance test
+      id: performance-test
+      uses: classroom-resources/autograding-command-grader@v1
       with:
+        test-name: performance test
+        setup-command: 'wget -O galaxy_test.h5 "https://www.dropbox.com/scl/fi/5fh5xlqu4nhtwgq9kvqtv/galaxy_test.h5?rlkey=sjdwic2lls7m6xuvtljycfzx6&dl=1"
+          ;  sudo -H pip3 install -r requirements.txt '
+        command: pytest
         timeout: 10
         max-score: 1
-        setup-command: sudo -H pip3 install -r requirements.txt  ; curl -L --output
-          galaxy_test.h5 "https://www.dropbox.com/scl/fi/5fh5xlqu4nhtwgq9kvqtv/galaxy_test.h5?rlkey=sjdwic2lls7m6xuvtljycfzx6&dl=1"
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
-        TEST_RESULTS: "${{steps.test.outputs.result}}"
+        PERFORMANCE-TEST_RESULTS: "${{steps.performance-test.outputs.result}}"
       with:
-        runners: test
+        runners: performance-test
